@@ -1,0 +1,32 @@
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top  bg-light">
+       <div class=" col-2"> <a class="navbar-brand color" href="{% url 'home' %}">Royal </a> </div> 
+          <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item   ">
+                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'rooms' %}">Rooms</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'galeries' %}">Galerie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'services' %}">Services</a>
+              </li>
+                <li class="nav-item">
+                  
+                
+              </li>
+            </ul>
+              {% if user.is_authenticated %}
+              <form class="form-inline my-2 my-lg-0" action="{% url 'accounts:logout'%}" method="POST">{% csrf_token %}
+              
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+                {% else %}
+                  <form class="form-inline my-2 my-lg-0" action="{% url 'accounts:signup'%}" method="POST">{% csrf_token %}
+                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Signup</button>
+                {% endif %}
+    </form>
+         </div>
+     </nav>

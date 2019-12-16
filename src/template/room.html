@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+ <section id="gallery">
+  <div class="container-fluid">
+    <div class="row">
+         <div class="col-12 nopadding1">
+          <img style="height: 500px; width: 100%; display: block;" src="/static/{{object.image}}" alt="Card image">     
+        </div></div></div>
+    <div class="container-fluid">
+    <div class="row">
+  <div class="col-md-8 left padding ">
+      
+                <h1>{{ object.name }}</h1>
+                
+                <h3 > {{ object.description }}</h3>
+                <br>
+                <h6>{{ object.description2 }}</h6>
+                <br><br>
+                <div class="container-fluid">
+                <div class="row"> <div class="col-3">
+                     <div class="col-8"><img style="height: 60px ; width: 60px ; " src="/static/family-2-02.svg"></div><br>
+                    <div class="col-8"><h4>{{ object.person }} adults </h4></div>
+            
+               </div><div  class="col-3" >
+               <div class="col-8"><img style="height: 60px ; width: 60px ; " src="/static/bed-2.svg"></div> <br>   <div class="col-8"><h4>{{ object.size }} cm </h4></div>
+                    </div>
+               <div  class="col-3" >
+                    <div class="col-8"><img style="height: 60px ; width: 60px ; " src="/static/full-size.svg"></div><br>
+                    <div class="col-8"><h4>{{ object.bed }} m² </h4></div></div>
+                </div>
+                </div><hr>
+                 <div class="container-fluid">
+               <div class="col-8"> <img style="height: 60px ; width: 60px ; " src="/static/7777.png">    <h4> Commodités incluses avec la chambre</h4></div> <br>
+                     {% for instance1 in obj3 %}
+
+                 <div class="row">
+                     <div class="col-2" ><img style="height: 30px ; width: 30px ; " src="/static/{{ instance1.convenience.UrlConvPic  }}"></div>
+                     <div class="col-2" > {{ instance1.convenience.name  }}</div>
+                     </div><br>{% endfor %}
+
+                     </div>
+  
+      </div>
+                    
+             <div class="col-md-3 left  padding">
+<div class="list-group">
+  <a href="{% url 'booking'  object.id  %}" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Booking Now from </h5>
+        <h3 class="mb-1" style="font-size: 110% ; ">{{object.price}} $</h3> </div>
+
+  </a>
+<hr>
+</div> 
+               {% for instance in obj %}  <div class="list-group"> <img style="height:100% ; width: 100% ; " src="/static/{{ instance.UrlPic  }}"></div><hr> {% endfor %}
+   </div>           
+     </div>
+  
+        </div>
+{% endblock %}

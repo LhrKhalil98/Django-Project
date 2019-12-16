@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="showcase2">
+    <h1 style = "font-size: 200% ; color : black ; " ; >Rooms</h1>
+    <p style=" color: black ; ">Hotel Rooms And Family Accomodation</p>
+</section>	
+  <section id="gallery">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 nopadding ">
+            <div style="height: 100px; width: 100%; display: block; padding-top: 20px ;font-size: 110% ; " >
+                <div>
+                   <a href="#Simple Standard"> <button type="button" class="btn btn-outline-secondary">Simple Standard</button></a>
+                    <a href="#Budget">   <button type="button" class="btn btn-outline-secondary">Budget</button></a>
+                    <a href="#Double Standard">  <button type="button" class="btn btn-outline-secondary">Double Standard</button></a>
+                    <a href="#Superior Double">  <button type="button" class="btn btn-outline-secondary">Superior Double</button></a>
+                    <a href="#Family">   <button type="button" class="btn btn-outline-secondary">Family</button></a>
+                </div><hr>
+              </div> 
+             </div>
+          </div> 
+      </div>{% for instance in object_list %}
+     <a name="{{ instance.name }}"> <div  class="container-fluid">
+        <div class="row">
+          <div class="col-6 nopadding align  ">
+            <div style="height: 514px; width: 100%; display: block; padding-top: 20px ; padding-left: 20px ;font-size: 110% ; " >
+               <h1>{{ instance.name }}</h1>
+                
+                <h1 style="font-size: 210%"><small class="text-muted">room from</small> {{ instance.price }}$</h1>
+                <br>
+                <h6>{{ instance.description }}</h6>
+                <br><br>
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3"><p class="text-muted">Capacity : </p></div>
+                    <div class="col-3"><h4>{{ instance.person }} adults </h4></div>
+                </div>
+                </div>
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3"><p class="text-muted">Size : </p></div>
+                    <div class="col-3"><h4>{{ instance.size }} cm </h4></div>
+                </div>
+                </div>
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3"><p class="text-muted">Bed :  </p></div>
+                    <div class="col-3"><h4>{{ instance.bed }} m² </h4></div>
+                </div>
+                </div>
+                <br>
+                  {% for ins1 in obj2 %}
+                  {% if ins1.room == instance %}
+                <img style="height: 40px ; width: 30px ; " src="/static/{{ins1.convenience.UrlConvPic}}">
+                  {% endif%}
+                  {% endfor%}
+                <br><br>
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-5"><a href="{% url 'booking' instance.id  %}"> <button type="button" class="btn btn-primary">Booking</button></a>
+                   <a href='{{ instance.get_absolute_url }}' ><button type="button" class="btn btn-outline-primary">learn more</button></a></div>
+                </div>
+                </div>
+
+            </div><hr>
+         </div>
+        <div class="col-6 nopadding  ">
+          <div style="height: 400px; width: 100%; display: block; ;font-size: 110% ; " >
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                  {% for ins in obj %}
+                  {% if  ins.idRoom == instance %}
+                <div class="carousel-item active">
+                   <img src="/static/{{ins.UrlPic}}" alt="Hotel Royal" title="Hotel Royal" class="img-responsive">
+
+               </div>
+                  {% endif%}
+                  {% endfor%}
+             </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+         </div>
+       </div>
+    </div>
+ </div>
+ </div></a>
+    {%endfor%}
+      
+    
+</section>
+{% endblock %}
